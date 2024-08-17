@@ -43,10 +43,7 @@ INSTALLED_APPS = [
     'djoser',
 
     # Local Apps
-    'users',
-    'products',
-    'payments',
-    'orders',
+    'store',
 ]
 
 CORS_ALLOWED_ORIGINS = [
