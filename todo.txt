@@ -1,3 +1,10 @@
 1. Install Django and Setup
+
+Building the database
+a. Store products
+b. Categories
+c. Mutliple Images
+d. Extra product data
+
 2. Install NextJs and Setup
 
