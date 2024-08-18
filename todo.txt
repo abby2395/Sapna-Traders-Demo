@@ -6,5 +6,15 @@ b. Categories
 c. Mutliple Images
 d. Extra product data
 
+Django Admin
+a. Adding the database
+b. Inlines
+
+Django Rest Framework
+a. Configure DRF
+b. Urls
+c. Views
+d. Serializers
+
 2. Install NextJs and Setup
 
