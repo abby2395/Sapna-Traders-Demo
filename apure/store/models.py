@@ -141,3 +141,31 @@ class ProductSpecificationValue(models.Model):
     
     def __str__(self):
         return self.value
+
+# Product Images
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete = models.CASCADE, related_image = 'product_image')
+    image = models.ImageField(
+        verbose_name = _("Image"),
+        help_text = _("Upload a product image"),
+        upload_to = "images/",
+        default = "images/default.png",
+    )
+
+    alt_text = models.CharField(
+        verbose_name = _("Alternative Text"),
+        help_text = _("Please add alternative text"),
+        max_length = 255,
+        null = True,
+        blank = True,
+    )
+
+    is_feature = models.BooleanField(default = False)
+
+    created_at = models.DateTimeField(auto_now_add = True, editable = False)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        verbose_name = _("Product Image")
+        verbose_name_plural = _("Product Images")
+
