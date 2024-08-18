@@ -109,3 +109,35 @@ class Product(models.Model):
         help_text = _("Change product visibility"),
         default = True,
     )
+
+    # Updating the time
+    created_at = models.DateTimeField(_("Created at"), auto_now_add = True, editable = False)
+    updated_at = models.DateTimeField(_("Updated at"), auto_now = True)
+
+    class Meta:
+        ordering = ("-created_at", )
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
+    
+    def get_absolute_url(self):
+        return reverse("store:product_detail", args = [self.slug])
+    
+    def __str__(self):
+        return self.title
+    
+# Product Specification Value 
+class ProductSpecificationValue(models.Model):
+    product = models.ForeignKey(Product, on_delete = models.CASCADE)
+    specification = models.ForeignKey(Product_Specification, on_delete = models.RESTRICT)
+    value = models.CharField(
+        verbose_name = _("Value"),
+        help_text = _("Product specification value (maximum of  255 words)"),
+        max_length= 255, 
+    ) 
+
+    class Meta:
+        verbose_name = _("Product Specification")
+        verbose_name_plural = _('Product Specification Values')
+    
+    def __str__(self):
+        return self.value
