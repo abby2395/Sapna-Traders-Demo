@@ -12,8 +12,25 @@ from .models import (
 
 # Register your models here.
 admin.site.register(Category, MPTTModelAdmin)
-admin.site.register(Product, MPTTModelAdmin)
-admin.site.register(Product_Specification, MPTTModelAdmin)
-admin.site.register(ProductType, MPTTModelAdmin)
-admin.site.register(ProductSpecificationValue, MPTTModelAdmin)
-admin.site.register(ProductImage, MPTTModelAdmin)
+
+class ProductSpecificationInline(admin.TabularInline):
+    model = Product_Specification
+
+@admin.register(ProductType)
+class ProductTypeAdmin(admin.ModelAdmin):
+    inlines = [
+    ProductSpecificationInline,
+    ]
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+
+class ProductSpecificationValueInline(admin.TabularInline):
+    model = ProductSpecificationValue
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [
+        ProductImageInline,
+        ProductSpecificationValueInline,
+    ]
